@@ -125,7 +125,7 @@ static void buzzer_beep(uint32_t duration_ms) {
     ledc_update_duty(BUZZER_LEDC_MODE, BUZZER_LEDC_CHANNEL);
 }
 
-// --- TFT BAŞLATMA (ARKADAŞININ V6 KODUYLA) ---
+// --- TFT BAŞLATMA 
 static void tft_init(void) {
     gpio_set_direction(PIN_NUM_BCKL, GPIO_MODE_OUTPUT);
     gpio_set_level(PIN_NUM_BCKL, 1);
@@ -159,7 +159,7 @@ static void tft_init(void) {
     ESP_ERROR_CHECK(esp_lcd_panel_reset(panel_handle));
     ESP_ERROR_CHECK(esp_lcd_panel_init(panel_handle));
     
-    // YATAY KÜP İÇİN DÖNDÜRME VE ZIT OFFSET (Arkadaşında 26,1 idi, bizde 1,26)
+    // YATAY KÜP İÇİN DÖNDÜRME VE ZIT OFFSET 
     ESP_ERROR_CHECK(esp_lcd_panel_swap_xy(panel_handle, true));
     // !!! YENİ EKLENEN SATIR !!!
     // IPS ekranda yatay modda yazıların aynalı çıkmaması için dikey eksende aynalama yapıyoruz
@@ -169,7 +169,7 @@ static void tft_init(void) {
     ESP_ERROR_CHECK(esp_lcd_panel_disp_on_off(panel_handle, true));
 }
 
-// Tüm ekranı boyayan fonksiyon (Arkadaşının DMA mantığıyla)
+// Tüm ekranı boyayan fonksiyon 
 void tft_fill_color(uint16_t color) {
     if (panel_handle == NULL) return;
     
@@ -366,7 +366,7 @@ extern "C" void app_main(void) {
                 
                 buzzer_beep(100); vTaskDelay(pdMS_TO_TICKS(100)); buzzer_beep(300); // Kapanış melodisi
                 
-                vTaskDelay(pdMS_TO_TICKS(3000)); // 3 saniye ekranda tut (Gurur tablosu)
+                vTaskDelay(pdMS_TO_TICKS(3000)); // 3 saniye ekranda tut (Gurur tablosu .d)
 
                 mpu6050_sleep(); 
                 tft_fill_color(COLOR_BLACK);     
